@@ -1,68 +1,29 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { fetchCampuses, fetchStudents } from '../reducers';
+import Campuses from './campuses';
+import Students from './students';
+import Home from './home'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-// const Root = () => {
-
-//   return (
-//     <div>
-//       <nav>
-//         Welcome!
-//       </nav>
-//       <main>
-//         <h1>Welcome to Juuban Municipal High School of Magic!</h1>
-//         <p>Where scouts are saving the world everyday!</p>
-//         <p>This seems like a nice place to get started with some Routes!</p>
-//       </main>
-//     </div>
-//   )
-// }
-
-class Root extends React.Component {
-  componentDidMount() {
-    this.props.fetchCampuses();
-    this.props.fetchStudents();
-  }
-  render() {
-    return (
+const Root = () => {
+  return (
+    <Router>
       <div>
-        <nav>Welcome!</nav>
+        <nav>
+          Welcome!
+          <Link to="/campuses">Campuses</Link>
+          <Link to="/students">Students</Link>
+        </nav>
+
         <main>
-          <h1>Welcome to Juuban Municipal High School of Magic!</h1>
-          <p>Where scouts are saving the world everyday!</p>
-          <p>This seems like a nice place to get started with some Routes!</p>
-          <table>
-            <tbody>
-            <tr>
-              <td>Name</td>
-              <td>Image</td>
-            </tr>
-            {this.props.campuses.map(
-              campus =>
-              (<tr key = {campus.id}>
-                <td>{campus.name}</td>
-                <td><img src = {`${campus.imageUrl}`} /></td>
-               </tr>)
-              )}
-            </tbody>
-          </table>
+          <Switch>
+            <Route path="/campuses" component={Campuses} />
+            <Route path="/students" component={Students} />
+            <Route exact path ="/" component={Home} />
+          </Switch>
         </main>
       </div>
-    );
-  }
-}
+    </Router>
+  );
+};
 
-const mapStateToProps = state => ({
-  campuses: state.campuses,
-  students: state.students,
-});
-
-const mapDispatchToProps = dispatch => ({
-  fetchCampuses: () => {dispatch(fetchCampuses())},
-  fetchStudents: () => {dispatch(fetchStudents())},
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Root);
+export default Root;
