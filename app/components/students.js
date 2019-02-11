@@ -1,14 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchStudents } from '../reducers';
+import { fetchStudents } from '../action-creators';
+import { Link } from 'react-router-dom';
 
 class Students extends React.Component {
   componentDidMount() {
-    
     this.props.fetchStudents();
   }
   render() {
-    console.log('my state', this.props.state)
     return (
       <div>
         <main>
@@ -20,9 +19,13 @@ class Students extends React.Component {
               </tr>
               {this.props.students.map(student => (
                 <tr key={student.id}>
-                  <td>{`${student.firstName} ${student.lastName}`}</td>
                   <td>
-                    <img src={`${student.imageUrl}`} />
+                    <Link to={`students/${student.id}`}>
+                      {`${student.firstName} ${student.lastName}`}
+                    </Link>
+                  </td>
+                  <td>
+                  <img src={`${student.imageUrl}`} />
                   </td>
                 </tr>
               ))}
@@ -36,7 +39,7 @@ class Students extends React.Component {
 
 const mapStateToProps = state => ({
   students: state.students,
-  state
+  state,
 });
 
 const mapDispatchToProps = dispatch => ({

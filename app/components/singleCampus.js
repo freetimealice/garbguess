@@ -1,12 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchStudents } from '../reducers';
+import { fetchCampus } from '../action-creators';
+import { Link } from 'react-router-dom';
 
-class Students extends React.Component {
+class SingleCampus extends React.Component {
   componentDidMount() {
-    this.props.fetchStudents();
+    const campusId = this.props.match.params.campusId;
+    this.props.fetchCampus(campusId);
   }
   render() {
+    const {
+      name,
+      imageUrl,
+      address,
+      description,
+      students,
+    } = this.props.selectedCampus;
     return (
       <div>
         <main>
@@ -15,15 +24,40 @@ class Students extends React.Component {
             <tbody>
               <tr>
                 <td>Name</td>
+                <td>{name}</td>
               </tr>
-              {this.props.Students.map(student => (
-                <tr key={student.id}>
-                  <td>{`${student.firstName} ${student.lastName}`}</td>
-                  <td>
-                    <img src={`${student.imageUrl}`} />
-                  </td>
-                </tr>
-              ))}
+              <tr>
+                <td>Image</td>
+                <td>
+                  <img src={`${imageUrl}`} />
+                </td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td>{address}</td>
+              </tr>
+              <tr>
+                <td>Description</td>
+                <td>{description}</td>
+              </tr>
+              <tr>
+                <td>Students</td>
+                <td>
+                  <ul>
+                    {students ? (
+                      students.map(student => (
+                        <li key={student.id}>
+                          <Link to={`/students/${student.id}`}>
+                            {student.firstName}
+                          </Link>
+                        </li>
+                      ))
+                    ) : (
+                      <li>not hi</li>
+                    )}
+                  </ul>
+                </td>
+              </tr>
             </tbody>
           </table>
         </main>
@@ -33,16 +67,16 @@ class Students extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  Students: state.students,
+  selectedCampus: state.selectedCampus,
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchStudents: () => {
-    dispatch(fetchStudents());
+  fetchCampus: campusId => {
+    dispatch(fetchCampus(campusId));
   },
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Students);
+)(SingleCampus);

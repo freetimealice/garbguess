@@ -1,11 +1,12 @@
+import axios from 'axios'
 
 //action type
-const GOT_CAMPUSES = 'GOT_CAMPUSES'
-const GOT_STUDENTS = 'GOT_STUDENTS'
-const SELECTED_CAMPUS = 'SELECTED_CAMPUS'
-const SELECTED_STUDENT = 'SELECTED_STUDENT'
+export const GOT_CAMPUSES = 'GOT_CAMPUSES'
+export const GOT_STUDENTS = 'GOT_STUDENTS'
+export const SELECTED_CAMPUS = 'SELECTED_CAMPUS'
+export const SELECTED_STUDENT = 'SELECTED_STUDENT'
 
-//action creaters
+//action creators
 export const gotCampuses = (campuses) => ({
   type: GOT_CAMPUSES,
   campuses
@@ -26,7 +27,7 @@ export const gotCampus = (campus) => ({
   campus
 })
 
-//thunk creaters
+//thunks
 export const fetchCampuses = () => {
   return async (dispatch) => {
     const {data} = await axios.get('/api/campuses')
@@ -43,7 +44,7 @@ export const fetchStudents = () => {
 
 export const fetchCampus = (campusId) => {
   return async (dispatch) => {
-    const {data} = await axios.get(`/api/campus/${campusId}`)
+    const {data} = await axios.get(`/api/campuses/${campusId}`)
     dispatch(gotCampus(data))
   }
 }
@@ -51,7 +52,7 @@ export const fetchCampus = (campusId) => {
 export const fetchStudent = (studentId) => {
   return async (dispatch) => {
     const {data} = await axios.get(`/api/students/${studentId}`)
-    dispatch(gotStudents(data))
+    dispatch(gotStudent(data))
   }
 }
 

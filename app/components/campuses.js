@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchCampuses } from '../reducers';
-
+import { fetchCampuses } from '../action-creators';
+import { Link } from 'react-router-dom';
 class Campuses extends React.Component {
   componentDidMount() {
     this.props.fetchCampuses();
@@ -18,12 +18,16 @@ class Campuses extends React.Component {
                 <td>Image</td>
               </tr>
               {this.props.campuses.map(campus => (
-                <tr key={campus.id}>
-                  <td>{campus.name}</td>
+                  <tr key={campus.id} >
                   <td>
-                    <img src={`${campus.imageUrl}`} />
+                  <Link to={`/campuses/${campus.id}`}>
+                  {campus.name}
+                  </Link>
                   </td>
-                </tr>
+                    <td>
+                      <img src={`${campus.imageUrl}`} />
+                    </td>
+                  </tr>
               ))}
             </tbody>
           </table>
