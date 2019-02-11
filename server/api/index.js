@@ -1,7 +1,7 @@
 'use strict';
 
 const router = require('express').Router();
-const { db, Campuses, Students } = require('../db');
+const { Campuses, Students } = require('../db');
 
 router.get('/students', async (req, res, next) => {
   try {
