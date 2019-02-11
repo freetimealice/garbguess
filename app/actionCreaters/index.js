@@ -1,13 +1,4 @@
-import axios from 'axios'
-import {combineReducers} from 'redux'
 
-
-const initialState = {
-  campuses: [],
-  students: [],
-  selectedStudent: {},
-  selectedCampus: {}
-}
 //action type
 const GOT_CAMPUSES = 'GOT_CAMPUSES'
 const GOT_STUDENTS = 'GOT_STUDENTS'
@@ -64,42 +55,3 @@ export const fetchStudent = (studentId) => {
   }
 }
 
-const campuses = (state = [], action) => {
-  switch (action.type) {
-    case GOT_CAMPUSES:
-      return action.campuses
-    default:
-      return state
-  }
-}
-
-const students = (state = [], action) => {
-  switch (action.type) {
-    case GOT_STUDENTS:
-      return action.students
-    default:
-      return state
-  }
-}
-
-const selectedStudent = (state = {}, action) => {
-  switch (action.type) {
-    case SELECTED_STUDENT:
-      return action.campus
-    default:
-      return state
-  }
-}
-
-const selectedCampus = (state = {}, action) => {
-  switch (action.type) {
-    case SELECTED_CAMPUS:
-      return action.student
-    default:
-      return state
-  }
-}
-
-const rootReducer = combineReducers({campuses, students, selectedStudent, selectedCampus})
-
-export default rootReducer

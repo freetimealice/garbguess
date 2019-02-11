@@ -4,21 +4,19 @@ import { fetchStudents } from '../reducers';
 
 class Students extends React.Component {
   componentDidMount() {
-    
     this.props.fetchStudents();
   }
   render() {
-    console.log('my state', this.props.state)
     return (
       <div>
         <main>
-          <h1>Our Amazing Students</h1>
+          <h1>Our Campus</h1>
           <table>
             <tbody>
               <tr>
                 <td>Name</td>
               </tr>
-              {this.props.students.map(student => (
+              {this.props.Students.map(student => (
                 <tr key={student.id}>
                   <td>{`${student.firstName} ${student.lastName}`}</td>
                   <td>
@@ -35,8 +33,7 @@ class Students extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  students: state.students,
-  state
+  Students: state.students,
 });
 
 const mapDispatchToProps = dispatch => ({

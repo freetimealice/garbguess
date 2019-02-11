@@ -20,6 +20,34 @@ router.get('/campuses', async (req, res, next) => {
     next(err);
   }
 });
+
+router.get('/students/:studentId', async (req, res, next) => {
+  try {
+    const singleStudents = await Students.findById(req.params.studentId, {
+      include: {
+        model: Campuses,
+        as: 'campus'
+      },
+    });
+    res.json(singleStudents);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/campuses/:campusId', async (req, res, next) => {
+  try {
+    const singleCampuses = await Campuses.findById(req.params.campusId, {
+      include: {
+        model: Students,
+      },
+    });
+    res.json(singleCampuses);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.use((req, res, next) => {
   const err = new Error('API route not found!');
   err.status = 404;
