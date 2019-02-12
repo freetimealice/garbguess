@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchCampuses, deleteCampus } from '../action-creator';
+import { fetchCampuses, deleteCampus, requestCampuses} from '../action-creator';
 import { Link } from 'react-router-dom';
 
 class Campuses extends React.Component {
+
   componentDidMount() {
+    this.props.requestCampuses()
     this.props.fetchCampuses();
   }
 
@@ -14,6 +16,10 @@ class Campuses extends React.Component {
   };
 
   render() {
+    const {campuses, isFetching} = this.props
+    if (!campuses.length && isFetching) {
+      return <p> Loading...</p>
+    }
     return (
       <div>
         <main>
@@ -24,7 +30,7 @@ class Campuses extends React.Component {
                 <td>Name</td>
                 <td>Image</td>
               </tr>
-              {this.props.campuses.map(campus => (
+              {campuses.map(campus => (
                 <tr key={campus.id}>
                   <td>
                     <Link to={`/campuses/${campus.id}`}>{campus.name}</Link>
@@ -52,6 +58,7 @@ class Campuses extends React.Component {
 
 const mapStateToProps = state => ({
   campuses: state.campuses,
+  isFetching: state.isFetching
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -60,6 +67,9 @@ const mapDispatchToProps = dispatch => ({
   },
   deleteCampus: campusId => {
     dispatch(deleteCampus(campusId));
+  },
+  requestCampuses: () => {
+    dispatch(requestCampuses());
   },
 });
 

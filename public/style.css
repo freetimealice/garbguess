@@ -30,9 +30,17 @@ nav {
   padding: 10px;
 }
 
+nav a {
+  color: #c0c0c0;
+}
+
 main {
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.error {
+  line-height: 5px;
 }

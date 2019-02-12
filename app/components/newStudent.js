@@ -5,23 +5,50 @@ import { addStudent } from '../action-creator';
 class newStudentForm extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      errors: [],
+    };
     this.submitHandler = this.submitHandler.bind(this);
   }
 
   submitHandler(event) {
-      event.preventDefault();
-      this.props.addStudent({
-          firstName: event.target.firstName.value,
-          lastName: event.target.lastName.value,
-          email: event.target.email.value
+    event.preventDefault();
+
+    const firstName = event.target.firstName.value;
+    const lastName = event.target.lastName.value;
+    const email = event.target.email.value;
+
+    const validate = (firstNameField, lastNameField, emailField) => {
+      const errorArr = [];
+      if (!firstNameField) errorArr.push('First name cannot be blank.');
+      if (!lastNameField) errorArr.push('Last name cannot be blank.');
+      if (!emailField) errorArr.push('Email cannot be blank.');
+      if (!emailField.includes('.') || !email.includes('@')) {
+        errorArr.push(`Email should contain a "@" and "."`);
+      }
+      return errorArr;
+    };
+    
+    const errors = validate(firstName, lastName, email);
+    errors
+      ? this.setState({ errors })
+      : this.props.addStudent({
+          firstName,
+          lastName,
+          email,
         });
-    // this.props.history.push(`/students/`);
   }
 
   render() {
     return (
       <div>
         <form onSubmit={this.submitHandler}>
+          {this.state.errors.map(error => (
+            <p className="error" key={error}>
+              {' '}
+              ❌ {error}
+            </p>
+          ))}
           <label htmlFor="firstName">First Name</label>
           <input name="firstName" /> <br />
           <label htmlFor="lastName">Last Name</label>
@@ -37,8 +64,8 @@ class newStudentForm extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    students: state.students
-})
+  students: state.students,
+});
 
 const mapDispatchToProps = dispatch => ({
   addStudent: newStudent => {

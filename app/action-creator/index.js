@@ -9,6 +9,8 @@ export const ADDED_CAMPUS = 'ADDED_CAMPUS';
 export const ADDED_STUDENT = 'ADDED_STUDENT';
 export const DELETED_CAMPUS = 'DELETED_CAMPUS';
 export const DELETED_STUDENT = 'DELETED_STUDENT';
+export const REQUEST_CAMPUSES = 'REQUEST_CAMPUSES'
+export const REQUEST_STUDENTS = 'REQUEST_CAMPUSES'
 
 //action creators
 export const gotCampuses = campuses => ({
@@ -44,7 +46,6 @@ export const addedCampus = campus => {
 };
 
 export const deletedStudent = studentId => {
-  console.log('hiiii');
   return {
     type: DELETED_STUDENT,
     studentId,
@@ -52,10 +53,21 @@ export const deletedStudent = studentId => {
 };
 
 export const deletedCampus = campusId => {
-  console.log('hiiii');
   return {
     type: DELETED_CAMPUS,
     campusId,
+  };
+};
+
+export const requestCampuses = () => {
+  return {
+    type: REQUEST_CAMPUSES,
+  };
+};
+
+export const requestStudents = () => {
+  return {
+    type: REQUEST_STUDENTS,
   };
 };
 

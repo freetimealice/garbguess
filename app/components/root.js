@@ -4,6 +4,7 @@ import SingleCampus from './singleCampus'
 import NewCampus from './newCampus'
 import Students from './students';
 import SingleStudent from './singleStudent'
+import NotFound from './notFound'
 import NewStudent from './newStudent'
 import Home from './home'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
@@ -29,6 +30,7 @@ const Root = () => {
             <Route exact path ="/newcampus" component={NewCampus} />
             <Route exact path ="/newstudent" component={NewStudent} />
             <Route exact path ="/" component={Home} />
+            <Route component={NotFound} />
           </Switch>
         </main>
       </div>

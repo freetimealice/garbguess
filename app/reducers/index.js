@@ -9,6 +9,8 @@ import {
   ADDED_STUDENT,
   DELETED_CAMPUS,
   DELETED_STUDENT,
+  REQUEST_CAMPUSES,
+  REQUEST_STUDENTS,
 } from '../action-creator';
 
 const campuses = (state = [], action) => {
@@ -59,11 +61,25 @@ const selectedCampus = (state = {}, action) => {
   }
 };
 
+const isFetching = (state = false, action) => {
+  switch (action.type) {
+    case REQUEST_CAMPUSES:
+      return true;
+    case REQUEST_STUDENTS:
+      return true;
+    case GOT_CAMPUSES:
+      return false;
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   campuses,
   students,
   selectedStudent,
   selectedCampus,
+  isFetching
 });
 
 export default rootReducer;

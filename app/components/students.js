@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchStudents, deleteStudent } from '../action-creator';
+import { fetchStudents, deleteStudent, requestStudents } from '../action-creator';
 import { Link } from 'react-router-dom';
 
 class Students extends React.Component {
 
   componentDidMount() {
+    this.props.requestStudents()
     this.props.fetchStudents();
   }
 
@@ -15,6 +16,10 @@ class Students extends React.Component {
   }
 
   render() {
+    const {students, isFetching} = this.props
+    if (!students.length && isFetching) {
+      return <p> Loading...</p>
+    }
     return (
       <div>
         <main>
@@ -24,7 +29,7 @@ class Students extends React.Component {
               <tr>
                 <td>Name</td>
               </tr>
-              {this.props.students.map(student => (
+              {students.map(student => (
                 <tr key={student.id}>
                   <td>
                     <Link to={`students/${student.id}`}>
@@ -49,6 +54,7 @@ class Students extends React.Component {
 
 const mapStateToProps = state => ({
   students: state.students,
+  isFetching: state.isFetching
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -57,7 +63,10 @@ const mapDispatchToProps = dispatch => ({
   },
   deleteStudent: (studentId) => {
     dispatch(deleteStudent(studentId))
-  }
+  },
+  requestStudents: () => {
+    dispatch(requestStudents());
+  },
 });
 
 export default connect(

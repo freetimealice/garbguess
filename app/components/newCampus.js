@@ -5,22 +5,37 @@ import { addCampus } from '../action-creator';
 class newCampusForm extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      errors: [],
+    };
     this.submitHandler = this.submitHandler.bind(this);
   }
 
   submitHandler(event) {
     event.preventDefault();
-    this.props.addCampus({
-      name: event.target.name.value,
-      address: event.target.address.value,
-    });
-    // this.props.history.push(`/campuses/`);
+    const name = event.target.name.value;
+    const address = event.target.address.value;
+
+    const validate = (nameField, addressField) => {
+      const errorArr = [];
+      if (!nameField) errorArr.push('Name cannott be blank.');
+      if (!addressField) errorArr.push('Address cannot be blank.');
+      return errorArr;
+    };
+    const errors = validate(name, address);
+
+    errors
+      ? this.setState({ errors: validate(name, address) })
+      : this.props.addCampus({ name, address });
   }
 
   render() {
     return (
       <div>
         <form onSubmit={this.submitHandler}>
+          {this.state.errors.map(error => (
+            <p className = "error" key={error}> ❌ {error}</p>
+          ))}
           <label htmlFor="name">Name</label>
           <input name="name" /> <br />
           <label htmlFor="address">Address</label>
@@ -38,6 +53,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(addCampus(newCampus));
   },
 });
+
 export default connect(
   null,
   mapDispatchToProps

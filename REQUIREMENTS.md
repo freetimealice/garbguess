@@ -59,8 +59,8 @@ Congrats! You have completed your first vertical slice! Make sure to `commit -m 
 - [x] Display the appropriate student when the url matches `/students/:studentId`
 - [x] Clicking on a student from the all-students view should navigate to show that student in the single-student view
 
-- [ ] Clicking on the name of a student in the single-campus view should navigate to show that student in the single-student view
-- [ ] Clicking on the name of a campus in the single-student view should navigate to show that campus in the single-campus view
+- [x] Clicking on the name of a student in the single-campus view should navigate to show that student in the single-student view
+- [x] Clicking on the name of a campus in the single-student view should navigate to show that campus in the single-campus view
 
 Congrats! You have completed your second vertical slice! Make sure to `commit -m "Feature: Get Single Campus and Student"` before moving on (see `RUBRIC.md` - points are awarded/deducted for a proper git workflow)!
 
@@ -113,8 +113,8 @@ Congrats! You have completed your third vertical slice! Make sure to `commit -m 
 
 - [x] In the all-students view, include an `X` button next to each student
 - [x] Clicking the `X` button should:
-  - [ ] Make an AJAX request that causes that student to be removed from database
-  - [ ] Remove the student from the list of students without needing to refresh the page
+  - [x] Make an AJAX request that causes that student to be removed from database
+  - [x] Remove the student from the list of students without needing to refresh the page
 
 Congrats! You have completed your fourth vertical slice! Make sure to `commit -m "Feature: Remove Campus and Student"` before moving on (see `RUBRIC.md` - points are awarded/deducted for a proper git workflow)!
 
