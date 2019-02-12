@@ -9,8 +9,7 @@ import {
   ADDED_STUDENT,
   DELETED_CAMPUS,
   DELETED_STUDENT,
-  REQUEST_CAMPUSES,
-  REQUEST_STUDENTS,
+  REQUESTING_DATA,
 } from '../action-creator';
 
 const campuses = (state = [], action) => {
@@ -33,6 +32,7 @@ const students = (state = [], action) => {
     case GOT_STUDENTS:
       return action.students;
     case ADDED_STUDENT:
+    console.log('added student')
       return [...state, action.student];
     case DELETED_STUDENT:
       return state
@@ -63,11 +63,15 @@ const selectedCampus = (state = {}, action) => {
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
-    case REQUEST_CAMPUSES:
-      return true;
-    case REQUEST_STUDENTS:
+    case REQUESTING_DATA:
       return true;
     case GOT_CAMPUSES:
+      return false;
+    case GOT_STUDENTS:
+      return false;
+    case SELECTED_CAMPUS:
+      return false;
+    case SELECTED_STUDENT:
       return false;
     default:
       return state;
@@ -79,7 +83,7 @@ const rootReducer = combineReducers({
   students,
   selectedStudent,
   selectedCampus,
-  isFetching
+  isFetching,
 });
 
 export default rootReducer;

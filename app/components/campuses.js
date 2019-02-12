@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchCampuses, deleteCampus, requestCampuses} from '../action-creator';
+import { fetchCampuses, deleteCampus, requestingData} from '../action-creator';
 import { Link } from 'react-router-dom';
 
 class Campuses extends React.Component {
 
   componentDidMount() {
-    this.props.requestCampuses()
+    this.props.requestingData()
     this.props.fetchCampuses();
   }
 
@@ -68,8 +68,8 @@ const mapDispatchToProps = dispatch => ({
   deleteCampus: campusId => {
     dispatch(deleteCampus(campusId));
   },
-  requestCampuses: () => {
-    dispatch(requestCampuses());
+  requestingData: () => {
+    dispatch(requestingData());
   },
 });
 

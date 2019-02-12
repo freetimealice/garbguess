@@ -9,8 +9,7 @@ export const ADDED_CAMPUS = 'ADDED_CAMPUS';
 export const ADDED_STUDENT = 'ADDED_STUDENT';
 export const DELETED_CAMPUS = 'DELETED_CAMPUS';
 export const DELETED_STUDENT = 'DELETED_STUDENT';
-export const REQUEST_CAMPUSES = 'REQUEST_CAMPUSES'
-export const REQUEST_STUDENTS = 'REQUEST_CAMPUSES'
+export const REQUESTING_DATA = 'REQUESTING_DATA'
 
 //action creators
 export const gotCampuses = campuses => ({
@@ -59,17 +58,12 @@ export const deletedCampus = campusId => {
   };
 };
 
-export const requestCampuses = () => {
+export const requestingData = () => {
   return {
-    type: REQUEST_CAMPUSES,
+    type: REQUESTING_DATA,
   };
 };
 
-export const requestStudents = () => {
-  return {
-    type: REQUEST_STUDENTS,
-  };
-};
 
 //thunks
 export const fetchCampuses = () => {
@@ -109,6 +103,7 @@ export const addCampus = newCampus => {
 };
 
 export const addStudent = newStudent => {
+  console.log('addedstudent')
   return async dispatch => {
     const { data } = await axios.post('/api/students', newStudent);
     dispatch(addedStudent(data));

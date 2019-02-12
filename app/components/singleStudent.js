@@ -1,14 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchStudent } from '../action-creator';
+import { fetchStudent, requestingData } from '../action-creator';
 import { Link } from 'react-router-dom';
 
 class SingleStudent extends React.Component {
+
   componentDidMount() {
     const studentId = this.props.match.params.studentId;
+    this.props.requestingData();
     this.props.fetchStudent(studentId);
   }
+  
   render() {
+    const { selectedStudent, isFetching } = this.props;
     const {
       firstName,
       lastName,
@@ -16,7 +20,12 @@ class SingleStudent extends React.Component {
       email,
       gpa,
       campus,
-    } = this.props.selectedStudent;
+    } = selectedStudent;
+
+    if (!selectedStudent.length && isFetching) {
+      return <p> Loading...</p>;
+    }
+
     return (
       <div>
         <main>
@@ -65,11 +74,15 @@ class SingleStudent extends React.Component {
 
 const mapStateToProps = state => ({
   selectedStudent: state.selectedStudent,
+  isFetching: state.isFetching,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchStudent: studentId => {
     dispatch(fetchStudent(studentId));
+  },
+  requestingData: () => {
+    dispatch(requestingData());
   },
 });
 

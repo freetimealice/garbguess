@@ -1,21 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchCampus } from '../action-creator';
+import { fetchCampus, requestingData } from '../action-creator';
 import { Link } from 'react-router-dom';
 
 class SingleCampus extends React.Component {
+
   componentDidMount() {
     const campusId = this.props.match.params.campusId;
+    this.props.requestingData()
     this.props.fetchCampus(campusId);
   }
   render() {
+
+    const {selectedCampus, isFetching} = this.props
     const {
       name,
       imageUrl,
       address,
       description,
       students,
-    } = this.props.selectedCampus;
+    } = selectedCampus;
+
+    if (!selectedCampus.length && isFetching) {
+      return <p> Loading...</p>
+    }
+
     return (
       <div>
         <main>
@@ -68,12 +77,16 @@ class SingleCampus extends React.Component {
 
 const mapStateToProps = state => ({
   selectedCampus: state.selectedCampus,
+  isFetching: state.isFetching
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchCampus: campusId => {
     dispatch(fetchCampus(campusId));
   },
+  requestingData: () => {
+    dispatch(requestingData())
+  }
 });
 
 export default connect(

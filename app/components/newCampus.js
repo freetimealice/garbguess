@@ -24,8 +24,8 @@ class newCampusForm extends React.Component {
     };
     const errors = validate(name, address);
 
-    errors
-      ? this.setState({ errors: validate(name, address) })
+    errors.length > 1
+      ? this.setState({errors})
       : this.props.addCampus({ name, address });
   }
 

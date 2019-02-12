@@ -28,9 +28,10 @@ class newStudentForm extends React.Component {
       }
       return errorArr;
     };
-    
+
     const errors = validate(firstName, lastName, email);
-    errors
+    
+    errors.length > 1
       ? this.setState({ errors })
       : this.props.addStudent({
           firstName,
@@ -45,7 +46,6 @@ class newStudentForm extends React.Component {
         <form onSubmit={this.submitHandler}>
           {this.state.errors.map(error => (
             <p className="error" key={error}>
-              {' '}
               ❌ {error}
             </p>
           ))}
@@ -63,16 +63,13 @@ class newStudentForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  students: state.students,
-});
-
 const mapDispatchToProps = dispatch => ({
   addStudent: newStudent => {
-    dispatch(addStudent(newStudent));
+    console.log('im in dispatch')
+    dispatch(addStudent(newStudent))
   },
 });
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(newStudentForm);
