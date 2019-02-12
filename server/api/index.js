@@ -21,6 +21,24 @@ router.get('/campuses', async (req, res, next) => {
   }
 });
 
+router.post('/students', async (req, res, next) => {
+  try {
+    const newStudent = await Students.create(req.body);
+    res.json(newStudent);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/campuses', async (req, res, next) => {
+  try {
+    const newCampus = await Campuses.create(req.body);
+    res.json(newCampus);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get('/students/:studentId', async (req, res, next) => {
   try {
     const singleStudents = await Students.findById(req.params.studentId, {

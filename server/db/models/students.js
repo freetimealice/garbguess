@@ -27,7 +27,7 @@ const Students = db.define('students', {
   imageUrl: {
     type: Sequelize.STRING,
     defaultValue:
-      'https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwj5oNOBhLTgAhUlmuAKHdHwA_AQjRx6BAgBEAU&url=https%3A%2F%2Fwww.anime-planet.com%2Fcharacters%2Fusagi-tsukino&psig=AOvVaw3TWu0F9PwQhDTRI7Q7p-41&ust=1549986539992915',
+      'https://previews.123rf.com/images/apoev/apoev1709/apoev170900088/85467744-default-avatar-anime-girl-profile-icon-grey-photo-manga-placeholder.jpg',
   },
   gpa: {
     type: Sequelize.DECIMAL(10, 1),
