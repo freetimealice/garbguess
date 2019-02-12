@@ -1,12 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchStudents } from '../action-creators';
+import { fetchStudents, deleteStudent } from '../action-creator';
 import { Link } from 'react-router-dom';
 
 class Students extends React.Component {
+
   componentDidMount() {
     this.props.fetchStudents();
   }
+
+  clickHandler = (event, studentId) => {
+    event.preventDefault()
+    this.props.deleteStudent(studentId)
+  }
+
   render() {
     return (
       <div>
@@ -27,6 +34,9 @@ class Students extends React.Component {
                   <td>
                   <img src={`${student.imageUrl}`} />
                   </td>
+                  <td>
+                  <button type = "submit" onClick = {() => this.clickHandler(event, student.id)}>X</button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -39,13 +49,15 @@ class Students extends React.Component {
 
 const mapStateToProps = state => ({
   students: state.students,
-  state,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchStudents: () => {
     dispatch(fetchStudents());
   },
+  deleteStudent: (studentId) => {
+    dispatch(deleteStudent(studentId))
+  }
 });
 
 export default connect(

@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchCampuses } from '../action-creators';
+import { fetchCampuses, deleteCampus } from '../action-creator';
 import { Link } from 'react-router-dom';
+
 class Campuses extends React.Component {
   componentDidMount() {
     this.props.fetchCampuses();
   }
+
+  clickHandler = (event, campusId) => {
+    event.preventDefault();
+    this.props.deleteCampus(campusId);
+  };
+
   render() {
     return (
       <div>
@@ -18,16 +25,22 @@ class Campuses extends React.Component {
                 <td>Image</td>
               </tr>
               {this.props.campuses.map(campus => (
-                  <tr key={campus.id} >
+                <tr key={campus.id}>
                   <td>
-                  <Link to={`/campuses/${campus.id}`}>
-                  {campus.name}
-                  </Link>
+                    <Link to={`/campuses/${campus.id}`}>{campus.name}</Link>
                   </td>
-                    <td>
-                      <img src={`${campus.imageUrl}`} />
-                    </td>
-                  </tr>
+                  <td>
+                    <img src={`${campus.imageUrl}`} />
+                  </td>
+                  <td>
+                    <button
+                      type="submit"
+                      onClick={() => this.clickHandler(event, campus.id)}
+                    >
+                      X
+                    </button>
+                  </td>
+                </tr>
               ))}
             </tbody>
           </table>
@@ -44,6 +57,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchCampuses: () => {
     dispatch(fetchCampuses());
+  },
+  deleteCampus: campusId => {
+    dispatch(deleteCampus(campusId));
   },
 });
 

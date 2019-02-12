@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addStudent } from '../action-creators';
+import { addStudent } from '../action-creator';
 
 class newStudentForm extends React.Component {
   constructor(props) {
@@ -15,8 +15,7 @@ class newStudentForm extends React.Component {
           lastName: event.target.lastName.value,
           email: event.target.email.value
         });
-        // const newStudentId = this.props.students.length
-    this.props.history.push(`/students/`);
+    // this.props.history.push(`/students/`);
   }
 
   render() {

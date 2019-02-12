@@ -7,6 +7,8 @@ export const SELECTED_CAMPUS = 'SELECTED_CAMPUS';
 export const SELECTED_STUDENT = 'SELECTED_STUDENT';
 export const ADDED_CAMPUS = 'ADDED_CAMPUS';
 export const ADDED_STUDENT = 'ADDED_STUDENT';
+export const DELETED_CAMPUS = 'DELETED_CAMPUS';
+export const DELETED_STUDENT = 'DELETED_STUDENT';
 
 //action creators
 export const gotCampuses = campuses => ({
@@ -38,6 +40,22 @@ export const addedCampus = campus => {
   return {
     type: ADDED_CAMPUS,
     campus,
+  };
+};
+
+export const deletedStudent = studentId => {
+  console.log('hiiii');
+  return {
+    type: DELETED_STUDENT,
+    studentId,
+  };
+};
+
+export const deletedCampus = campusId => {
+  console.log('hiiii');
+  return {
+    type: DELETED_CAMPUS,
+    campusId,
   };
 };
 
@@ -73,14 +91,28 @@ export const fetchStudent = studentId => {
 export const addCampus = newCampus => {
   return async dispatch => {
     const { data } = await axios.post('/api/campuses', newCampus);
+    console.log('data', data);
     dispatch(addedCampus(data));
   };
 };
 
 export const addStudent = newStudent => {
-  
   return async dispatch => {
     const { data } = await axios.post('/api/students', newStudent);
     dispatch(addedStudent(data));
+  };
+};
+
+export const deleteCampus = campusId => {
+  return async dispatch => {
+    await axios.delete(`/api/campuses/${campusId}`);
+    dispatch(deletedCampus(campusId));
+  };
+};
+
+export const deleteStudent = studentId => {
+  return async dispatch => {
+    await axios.delete(`/api/students/${studentId}`);
+    dispatch(deletedStudent(studentId));
   };
 };

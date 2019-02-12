@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchStudent } from '../action-creators';
+import { fetchStudent } from '../action-creator';
 import { Link } from 'react-router-dom';
 
 class SingleStudent extends React.Component {

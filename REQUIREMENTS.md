@@ -101,18 +101,18 @@ Congrats! You have completed your third vertical slice! Make sure to `commit -m 
 
 #### Backend
 
-- [ ] Write a route to remove a campus (based on its id)
-- [ ] Write a route to remove a student (based on their id)
+- [x] Write a route to remove a campus (based on its id)
+- [x] Write a route to remove a student (based on their id)
 
 #### Frontend
 
-- [ ] In the all-campuses view, include an `X` button next to each campus
-- [ ] Clicking the `X` button should:
-  - [ ] Make an AJAX request that causes that campus to be removed from database
+- [x] In the all-campuses view, include an `X` button next to each campus
+- [x] Clicking the `X` button should:
+  - [x] Make an AJAX request that causes that campus to be removed from database
   - [ ] Remove the campus from the list of campuses without needing to refresh the page
 
-- [ ] In the all-students view, include an `X` button next to each student
-- [ ] Clicking the `X` button should:
+- [x] In the all-students view, include an `X` button next to each student
+- [x] Clicking the `X` button should:
   - [ ] Make an AJAX request that causes that student to be removed from database
   - [ ] Remove the student from the list of students without needing to refresh the page
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchCampus } from '../action-creators';
+import { fetchCampus } from '../action-creator';
 import { Link } from 'react-router-dom';
 
 class SingleCampus extends React.Component {

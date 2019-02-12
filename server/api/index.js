@@ -44,7 +44,7 @@ router.get('/students/:studentId', async (req, res, next) => {
     const singleStudents = await Students.findById(req.params.studentId, {
       include: {
         model: Campuses,
-        as: 'campus'
+        as: 'campus',
       },
     });
     res.json(singleStudents);
@@ -61,6 +61,26 @@ router.get('/campuses/:campusId', async (req, res, next) => {
       },
     });
     res.json(singleCampuses);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete('/students/:studentId', async (req, res, next) => {
+  try {
+    const studentToDelete = await Students.findById(req.params.studentId);
+    await studentToDelete.destroy();
+    res.json(studentToDelete)
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete('/campuses/:campusId', async (req, res, next) => {
+  try {
+    const campusToDelete = await Campuses.findById(req.params.campusId);
+    await campusToDelete.destroy();
+    res.json(campusToDelete)
   } catch (err) {
     next(err);
   }

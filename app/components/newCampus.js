@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addCampus } from '../action-creators';
+import { addCampus } from '../action-creator';
 
 class newCampusForm extends React.Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class newCampusForm extends React.Component {
       name: event.target.name.value,
       address: event.target.address.value,
     });
-    this.props.history.push(`/campuses/`);
+    // this.props.history.push(`/campuses/`);
   }
 
   render() {
