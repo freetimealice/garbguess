@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchCampuses, deleteCampus, requestingData} from '../actions';
+import { fetchCampuses, deleteCampus, requestingData } from '../actions';
 import { Link } from 'react-router-dom';
 
 class Campuses extends React.Component {
-
   componentDidMount() {
-    this.props.requestingData()
+    this.props.requestingData();
     this.props.fetchCampuses();
   }
 
@@ -16,42 +15,27 @@ class Campuses extends React.Component {
   };
 
   render() {
-    const {campuses, isFetching} = this.props
+    const { campuses, isFetching } = this.props;
     if (!campuses.length && isFetching) {
-      return <p> Loading...</p>
+      return <p> Loading...</p>;
     }
     return (
       <div>
         <main>
           <h1>Our Gorgeous Campuses</h1>
-
-          
-          {/* <table>
-            <tbody>
-              <tr>
-                <td>Name</td>
-                <td>Image</td>
-              </tr>
-              {campuses.map(campus => (
-                <tr key={campus.id}>
-                  <td>
-                    <Link to={`/campuses/${campus.id}`}>{campus.name}</Link>
-                  </td>
-                  <td>
-                    <img className = "small-img" src={`${campus.imageUrl}`} />
-                  </td>
-                  <td>
-                    <button
-                      type="submit"
-                      onClick={() => this.clickHandler(event, campus.id)}
-                    >
-                      X
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table> */}
+          <div className = "card-container">
+          {campuses.map(campus => (
+            <div className="card" key={campus.id}>
+              <Link to={`/campuses/${campus.id}`}>
+                <img className="smallcampus-img" src={`${campus.imageUrl}`} />
+                <h3>{campus.name}</h3>
+              </Link>
+                <button id = "demolish" type="submit" onClick={() => this.clickHandler(event, campus.id)}>
+                  Demolish
+                </button>
+            </div>
+          ))}
+          </div>
         </main>
       </div>
     );
@@ -60,7 +44,7 @@ class Campuses extends React.Component {
 
 const mapStateToProps = state => ({
   campuses: state.campuses,
-  isFetching: state.isFetching
+  isFetching: state.isFetching,
 });
 
 const mapDispatchToProps = dispatch => ({

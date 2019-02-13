@@ -26,6 +26,37 @@ class SingleCampus extends React.Component {
     return (
       <div>
         <main>
+
+        <h1>Campus: {name}</h1>
+          <div className="profile-container">
+            <div className="profile-details">
+              <img className="largecampus-img" src={`${imageUrl}`} />
+            </div>
+            <div className="profile-details">
+              <p><b>Name: </b>{name}</p>
+              <p><b>Address:</b> {address}</p>
+              <p><b>Description: </b>{description}</p>
+              <p><b>Students: </b>
+              {students ? (
+                      students.map(student => (
+                        <li key={student.id}>
+                          <Link to={`/students/${student.id}`}>
+                            {student.firstName}
+                          </Link>
+                        </li>
+                      ))
+                    ) : (
+                      <li />
+                    )}
+              </p>
+            </div>
+          </div>
+          <div className="profile-details">
+            <h3> Edit Campus </h3>
+            <CampusForm addOrUpdate="update" campusId={campusId} />
+          </div>
+
+{/* 
           <h1>Our Campus</h1>
           <table>
             <tbody>
@@ -51,17 +82,7 @@ class SingleCampus extends React.Component {
                 <td>Students</td>
                 <td>
                   <ul>
-                    {students ? (
-                      students.map(student => (
-                        <li key={student.id}>
-                          <Link to={`/students/${student.id}`}>
-                            {student.firstName}
-                          </Link>
-                        </li>
-                      ))
-                    ) : (
-                      <li />
-                    )}
+
                   </ul>
                 </td>
               </tr>
@@ -69,7 +90,7 @@ class SingleCampus extends React.Component {
           </table>
           <div>
             <CampusForm addOrUpdate="update" campusId={campusId} />
-          </div>
+          </div> */}
         </main>
       </div>
     );

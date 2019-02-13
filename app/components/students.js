@@ -1,10 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  fetchStudents,
-  deleteStudent,
-  requestingData,
-} from '../actions';
+import { fetchStudents, deleteStudent, requestingData } from '../actions';
 import { Link } from 'react-router-dom';
 
 class Students extends React.Component {
@@ -27,33 +23,26 @@ class Students extends React.Component {
       <div>
         <main>
           <h1>Our Amazing Students</h1>
-          <table>
-            <tbody>
-              <tr>
-                <td>Name</td>
-              </tr>
-              {students.map(student => (
-                <tr key={student.id}>
-                  <td>
-                    <Link to={`/students/${student.id}`}>
-                      {`${student.firstName} ${student.lastName}`}
-                    </Link>
-                  </td>
-                  <td>
-                    <img className = "small-img" src={`${student.imageUrl}`} />
-                  </td>
-                  <td>
-                    <button
-                      type="submit"
-                      onClick={() => this.clickHandler(event, student.id)}
-                    >
-                      X
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="card-container">
+            {students.map(student => (
+              <div className="card" key={student.id}>
+                <Link to={`/students/${student.id}`}>
+                  <img
+                    className="smallprofile-img"
+                    src={`${student.imageUrl}`}
+                  />
+                  <h3>{`${student.firstName} ${student.lastName}`}</h3>
+                </Link>
+                <button
+                  id="demolish"
+                  type="submit"
+                  onClick={() => this.clickHandler(event, student.id)}
+                >
+                  Expel
+                </button>
+              </div>
+            ))}
+          </div>
         </main>
       </div>
     );

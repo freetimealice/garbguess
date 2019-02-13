@@ -33,7 +33,7 @@ export const addCampus = (newCampus, history) => {
   return async dispatch => {
     const { data } = await axios.post('/api/campuses', newCampus);
     dispatch(action.addedCampus(data));
-    // history.push(`/campuses/${data.id}`)
+    history.push(`/campuses/${data.id}`)
   };
 };
 
@@ -41,7 +41,7 @@ export const addStudent = (newStudent, history) => {
   return async dispatch => {
     const { data } = await axios.post('/api/students', newStudent);
     dispatch(action.addedStudent(data));
-    history.push(`/students/${data.id}`)
+    history.push(`/students/${data.id}`);
   };
 };
 

@@ -17,7 +17,7 @@ class SingleStudent extends React.Component {
     const { studentId } = this.props.match.params;
 
     if (selectedStudent === null) {
-      return (<NotExist campusOrStudent = "Student" />)
+      return <NotExist campusOrStudent="Student" />;
     }
 
     const {
@@ -27,6 +27,7 @@ class SingleStudent extends React.Component {
       email,
       gpa,
       campus,
+      description
     } = selectedStudent;
 
     if (!selectedStudent.length && isFetching) {
@@ -36,44 +37,28 @@ class SingleStudent extends React.Component {
     return (
       <div>
         <main>
-          <h1>Our Student</h1>
-          <table>
-            <tbody>
-              <tr>
-                <td>First Name</td>
-                <td>{firstName}</td>
-              </tr>
-              <tr>
-                <td>Last Name</td>
-                <td>{lastName}</td>
-              </tr>
-              <tr>
-                <td>Image</td>
-                <td>
-                  <img className = "small-img" src={`${imageUrl}`} />
-                </td>
-              </tr>
-              <tr>
-                <td>Email</td>
-                <td>{email}</td>
-              </tr>
-              <tr>
-                <td>GPA</td>
-                <td>{gpa}</td>
-              </tr>
-              <tr>
-                <td>Campus</td>
-                <td>
-                  {campus ? (
-                    <Link to={`/campuses/${campus.id}`}> {campus.name} </Link>
+          <h1>Student: {firstName} {lastName}</h1>
+          <div className="profile-container">
+            <div className="profile-details">
+              <img className="largeprofile-img" src={`${imageUrl}`} />
+            </div>
+            <div className="profile-details">
+              <p><b>First Name: </b>{firstName}</p>
+              <p><b>Last Name: </b>{lastName}</p>
+              <p><b>Email:</b> {email}</p>
+              <p><b>GPA: </b>{gpa}</p>
+              <p><b>Campus: </b>
+                {campus ? (
+                  <Link to={`/campuses/${campus.id}`}> {campus.name} </Link>
                   ) : (
                     'Not Currently Enrolled'
-                  )}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div>
+                    )}
+              </p>
+              <p><b>Description: </b>{description}</p>
+            </div>
+          </div>
+          <div className="profile-details">
+            <h3> Edit Student </h3>
             <StudentForm addOrUpdate="update" studentId={studentId} />
           </div>
         </main>

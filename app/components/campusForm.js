@@ -14,10 +14,10 @@ class CampusForm extends React.Component {
 
   submitHandler(event) {
     event.preventDefault();
-    console.log('in submit handler')
     const name = event.target.name.value;
     const address = event.target.address.value;
-    const {campusId} = this.props
+    const description = event.target.description.value;
+    const { campusId } = this.props;
 
     const validate = (nameField, addressField) => {
       const errorArr = [];
@@ -31,28 +31,39 @@ class CampusForm extends React.Component {
     if (errors.length > 0) {
       this.setState({ errors });
     } else if (this.state.addOrUpdate !== 'update') {
-      this.props.addCampus({ name, address });
+      this.props.addCampus({ name, address, description });
     } else {
-      this.props.updateCampus({ name, address }, campusId);
+      this.props.updateCampus(
+        { name, address, description},
+        campusId
+      );
     }
-
-    event.target.reset()
+    event.target.reset();
   }
 
   render() {
     return (
       <div>
+        {this.state.addOrUpdate !== 'update' ? (
+          <h1>Construct a New Campus!</h1>
+        ) : (
+          <p />
+        )}
         <form onSubmit={this.submitHandler}>
-        {this.state.errors.map(error => (
+          {this.state.errors.map(error => (
             <p className="error" key={error}>
               ❌ {error}
             </p>
           ))}
           <label htmlFor="name">Name</label>
+          <br />
           <input name="name" /> <br />
           <label htmlFor="address">Address</label>
-          <input name="address" />
           <br />
+          <input name="address" /> <br />
+          <label htmlFor="description">Description</label>
+          <br />
+          <textarea name="description" /> <br />
           <button type="submit"> Submit</button>
         </form>
       </div>
@@ -60,9 +71,9 @@ class CampusForm extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   addCampus: newCampus => {
-    dispatch(addCampus(newCampus))
+    dispatch(addCampus(newCampus, ownProps.history));
   },
   updateCampus: (campus, campusId) => {
     dispatch(updateCampus(campus, campusId));

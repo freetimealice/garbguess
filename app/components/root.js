@@ -17,7 +17,7 @@ const Root = () => {
       <h1>Juuban Municipal High School</h1>
 
         <nav>
-          <ul id = "navLink">
+          <ul >
           <li><Link to="/">Home</Link></li>
           <li><Link to="/campuses">Campuses</Link></li>
           <li><Link to="/students">Students</Link></li>

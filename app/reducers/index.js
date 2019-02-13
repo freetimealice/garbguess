@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-
 import * as aTypes from '../actions';
 
 const campuses = (state = [], action) => {

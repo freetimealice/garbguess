@@ -1,6 +1,12 @@
 const db = require('../database');
 const Sequelize = require('sequelize');
 
+
+const getRandomImage = () => {
+  let num = Math.floor(Math.random() * 8) + 1
+  return `/images/students/misc/${num}.jpg`
+}
+
 const Students = db.define('students', {
   firstName: {
     type: Sequelize.STRING,
@@ -26,8 +32,7 @@ const Students = db.define('students', {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue:
-      '/images/profile.jpg',
+    defaultValue: getRandomImage(),
   },
   gpa: {
     type: Sequelize.DECIMAL(10, 1),
