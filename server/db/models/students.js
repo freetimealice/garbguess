@@ -27,7 +27,7 @@ const Students = db.define('students', {
   imageUrl: {
     type: Sequelize.STRING,
     defaultValue:
-      'https://previews.123rf.com/images/apoev/apoev1709/apoev170900088/85467744-default-avatar-anime-girl-profile-icon-grey-photo-manga-placeholder.jpg',
+      '/images/profile.jpg',
   },
   gpa: {
     type: Sequelize.DECIMAL(10, 1),

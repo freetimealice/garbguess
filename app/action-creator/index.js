@@ -10,7 +10,8 @@ export const ADDED_STUDENT = 'ADDED_STUDENT';
 export const DELETED_CAMPUS = 'DELETED_CAMPUS';
 export const DELETED_STUDENT = 'DELETED_STUDENT';
 export const REQUESTING_DATA = 'REQUESTING_DATA'
-
+export const UPDATED_STUDENT = 'UPDATED_STUDENT'
+export const UPDATED_CAMPUS = 'UPDATED_CAMPUS'
 //action creators
 export const gotCampuses = campuses => ({
   type: GOT_CAMPUSES,
@@ -64,7 +65,19 @@ export const requestingData = () => {
   };
 };
 
+export const updatedStudent  = student => {
+  return {
+    type: UPDATED_STUDENT,
+    student,
+  };
+}
 
+export const updatedCampus = campus => {
+  return {
+    type: UPDATED_CAMPUS,
+    campus,
+  };
+};
 //thunks
 export const fetchCampuses = () => {
   return async dispatch => {
@@ -97,13 +110,11 @@ export const fetchStudent = studentId => {
 export const addCampus = newCampus => {
   return async dispatch => {
     const { data } = await axios.post('/api/campuses', newCampus);
-    console.log('data', data);
     dispatch(addedCampus(data));
   };
 };
 
 export const addStudent = newStudent => {
-  console.log('addedstudent')
   return async dispatch => {
     const { data } = await axios.post('/api/students', newStudent);
     dispatch(addedStudent(data));
@@ -121,5 +132,19 @@ export const deleteStudent = studentId => {
   return async dispatch => {
     await axios.delete(`/api/students/${studentId}`);
     dispatch(deletedStudent(studentId));
+  };
+};
+
+export const updateCampus = (campus, campusId) => {
+  return async dispatch => {
+    const {data} = await axios.put(`/api/campuses/${campusId}`, campus);
+    dispatch(updatedCampus(data));
+  };
+};
+
+export const updateStudent = (student, studentId) => {
+  return async dispatch => {
+    const {data} = await axios.put(`/api/students/${studentId}`, studentId);
+    dispatch(updatedStudent(data));
   };
 };

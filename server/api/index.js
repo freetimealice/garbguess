@@ -39,38 +39,11 @@ router.post('/campuses', async (req, res, next) => {
   }
 });
 
-router.get('/students/:studentId', async (req, res, next) => {
-  try {
-    const singleStudents = await Students.findById(req.params.studentId, {
-      include: {
-        model: Campuses,
-        as: 'campus',
-      },
-    });
-    res.json(singleStudents);
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.get('/campuses/:campusId', async (req, res, next) => {
-  try {
-    const singleCampuses = await Campuses.findById(req.params.campusId, {
-      include: {
-        model: Students,
-      },
-    });
-    res.json(singleCampuses);
-  } catch (err) {
-    next(err);
-  }
-});
-
 router.delete('/students/:studentId', async (req, res, next) => {
   try {
     const studentToDelete = await Students.findById(req.params.studentId);
     await studentToDelete.destroy();
-    res.json(studentToDelete)
+    res.json(studentToDelete);
   } catch (err) {
     next(err);
   }
@@ -80,7 +53,54 @@ router.delete('/campuses/:campusId', async (req, res, next) => {
   try {
     const campusToDelete = await Campuses.findById(req.params.campusId);
     await campusToDelete.destroy();
-    res.json(campusToDelete)
+    res.json(campusToDelete);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put('/students/:studentId', async (req, res, next) => {
+  try {
+    const singleStudent = await Students.findById(req.params.studentId);
+    const updatedStudent = await singleStudent.update(req.body);
+    res.json(updatedStudent);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put('/campuses/:campusId', async (req, res, next) => {
+  try {
+    const singleCampus = await Campuses.findById(req.params.campusId);
+    const updatedCampus = await singleCampus.update(req.body);
+    res.json(updatedCampus);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/students/:studentId', async (req, res, next) => {
+  try {
+    const singleStudent = await Students.findById(req.params.studentId, {
+      include: {
+        model: Campuses,
+        as: 'campus',
+      },
+    });
+    res.json(singleStudent);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/campuses/:campusId', async (req, res, next) => {
+  try {
+    const singleCampus = await Campuses.findById(req.params.campusId, {
+      include: {
+        model: Students,
+      },
+    });
+    res.json(singleCampus);
   } catch (err) {
     next(err);
   }

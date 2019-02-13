@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addStudent } from '../action-creator';
+import { addStudent, updateStudent } from '../action-creator';
 
-class newStudentForm extends React.Component {
+class StudentForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       errors: [],
+      addOrUpdate: this.props.addOrUpdate,
     };
     this.submitHandler = this.submitHandler.bind(this);
   }
@@ -17,6 +18,7 @@ class newStudentForm extends React.Component {
     const firstName = event.target.firstName.value;
     const lastName = event.target.lastName.value;
     const email = event.target.email.value;
+    const { studentId } = this.props;
 
     const validate = (firstNameField, lastNameField, emailField) => {
       const errorArr = [];
@@ -30,14 +32,16 @@ class newStudentForm extends React.Component {
     };
 
     const errors = validate(firstName, lastName, email);
-    
-    errors.length > 1
-      ? this.setState({ errors })
-      : this.props.addStudent({
-          firstName,
-          lastName,
-          email,
-        });
+
+    if (errors.length > 1) {
+      this.setState({ errors });
+    } else if (this.state.addOrUpdate !== 'update') {
+      this.props.addStudent({ firstName, lastName, email });
+    } else {
+      this.props.updateStudent({ firstName, lastName, email }, studentId);
+    }
+
+    event.target.reset()
   }
 
   render() {
@@ -65,11 +69,13 @@ class newStudentForm extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   addStudent: newStudent => {
-    console.log('im in dispatch')
-    dispatch(addStudent(newStudent))
+    dispatch(addStudent(newStudent));
+  },
+  updateStudent: (student, studentId) => {
+    dispatch(updateStudent(student, studentId));
   },
 });
 export default connect(
   null,
   mapDispatchToProps
-)(newStudentForm);
+)(StudentForm);

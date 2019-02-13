@@ -1,30 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchCampus, requestingData } from '../action-creator';
+import { fetchCampus, requestingData, fetchCampuses } from '../action-creator';
 import { Link } from 'react-router-dom';
+import CampusForm from './campusForm';
 
 class SingleCampus extends React.Component {
-
   componentDidMount() {
-    const campusId = this.props.match.params.campusId;
-    this.props.requestingData()
+    const { campusId } = this.props.match.params;
+    this.props.requestingData();
     this.props.fetchCampus(campusId);
   }
-  render() {
 
-    const {selectedCampus, isFetching} = this.props
-    const {
-      name,
-      imageUrl,
-      address,
-      description,
-      students,
-    } = selectedCampus;
+  render() {
+    const { selectedCampus, isFetching } = this.props;
+    const { campusId } = this.props.match.params;
+    const { name, imageUrl, address, description, students } = selectedCampus;
 
     if (!selectedCampus.length && isFetching) {
-      return <p> Loading...</p>
+      return <p> Loading...</p>;
     }
-
     return (
       <div>
         <main>
@@ -62,13 +56,16 @@ class SingleCampus extends React.Component {
                         </li>
                       ))
                     ) : (
-                      <li>not hi</li>
+                      <li />
                     )}
                   </ul>
                 </td>
               </tr>
             </tbody>
           </table>
+          <div>
+            <CampusForm addOrUpdate="update" campusId={campusId} />
+          </div>
         </main>
       </div>
     );
@@ -77,7 +74,8 @@ class SingleCampus extends React.Component {
 
 const mapStateToProps = state => ({
   selectedCampus: state.selectedCampus,
-  isFetching: state.isFetching
+  isFetching: state.isFetching,
+  campuses: state.campuses,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -85,8 +83,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(fetchCampus(campusId));
   },
   requestingData: () => {
-    dispatch(requestingData())
-  }
+    dispatch(requestingData());
+  },
 });
 
 export default connect(

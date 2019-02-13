@@ -13,7 +13,7 @@ The requirements below are broken into separate **tiers**, which model the way w
   - [x] imageUrl - with a default value
   - [x] address - not empty or null
   - [x] description - extremely large text
-- [ ] Write a `students` model with the following information:
+- [x] Write a `students` model with the following information:
   - [x] firstName - not empty or null
   - [x] lastName - not empty or null
   - [x] email - not empty or null; must be a valid email
@@ -109,7 +109,7 @@ Congrats! You have completed your third vertical slice! Make sure to `commit -m 
 - [x] In the all-campuses view, include an `X` button next to each campus
 - [x] Clicking the `X` button should:
   - [x] Make an AJAX request that causes that campus to be removed from database
-  - [ ] Remove the campus from the list of campuses without needing to refresh the page
+  - [x] Remove the campus from the list of campuses without needing to refresh the page
 
 - [x] In the all-students view, include an `X` button next to each student
 - [x] Clicking the `X` button should:
@@ -129,8 +129,8 @@ Congrats! You have completed your fourth vertical slice! Make sure to `commit -m
 - [x] If a user attempts to access a page that doesn't exist (ex. `/cafeteria`), a helpful "not found" message should be displayed
 - [x] If a user attempts to view a student/campus that doesn't exist, a helpful message should be displayed
 - [x] Whenever a component needs to wait for data to load from the server, a "loading" message should be displayed until the data is available
-- [ ] Has a working `seed` file, that seeds the db with complete student and campus instances.
-- [ ] Overall, the app is spectacularly styled and visually stunning
+- [x] Has a working `seed` file, that seeds the db with complete student and campus instances.
+- [x] Overall, the app is spectacularly styled and visually stunning
 
 </details>
 
@@ -140,21 +140,21 @@ Congrats! You have completed your fourth vertical slice! Make sure to `commit -m
 
 #### Backend
 
-- [ ] Write a route to update an existing campus
-- [ ] Write a route to update an existing student
+- [x] Write a route to update an existing campus
+- [x] Write a route to update an existing student
 
 #### Frontend
 
-- [ ] Write a component to display a form updating _at least_ a campus's name and address
-- [ ] Display this component as part of the single-campus view
+- [x] Write a component to display a form updating _at least_ a campus's name and address
+- [x] Display this component as part of the single-campus view
 - Submitting the form with a valid name/address should:
-  - [ ] Make an AJAX request that causes that campus to be updated in the database
-  - [ ] Update the campus in the current view without needing to refresh the page
+  - [x] Make an AJAX request that causes that campus to be updated in the database
+  - [x] Update the campus in the current view without needing to refresh the page
 
-- [ ] Write a component to display a form updating _at least_ a student's first and last names, and email
-- [ ] Display this component as part of the single-student view
+- [x] Write a component to display a form updating _at least_ a student's first and last names, and email
+- [x] Display this component as part of the single-student view
 - Submitting the form with a valid name/address should:
-  - [ ] Make an AJAX request that causes that student to be updated in the database
-  - [ ] Update the student in the current view without needing to refresh the page
+  - [x] Make an AJAX request that causes that student to be updated in the database
+  - [x] Update the student in the current view without needing to refresh the page
 
 </details>

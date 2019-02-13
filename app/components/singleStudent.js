@@ -1,18 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchStudent, requestingData } from '../action-creator';
+import { fetchStudent, requestingData, fetchStudents } from '../action-creator';
 import { Link } from 'react-router-dom';
+import StudentForm from './studentForm';
 
 class SingleStudent extends React.Component {
-
   componentDidMount() {
-    const studentId = this.props.match.params.studentId;
+    const { studentId } = this.props.match.params;
     this.props.requestingData();
     this.props.fetchStudent(studentId);
   }
-  
+
   render() {
     const { selectedStudent, isFetching } = this.props;
+    const { studentId } = this.props.match.params;
+
     const {
       firstName,
       lastName,
@@ -66,6 +68,9 @@ class SingleStudent extends React.Component {
               </tr>
             </tbody>
           </table>
+          <div>
+            <StudentForm addOrUpdate="update" studentId={studentId} />
+          </div>
         </main>
       </div>
     );
