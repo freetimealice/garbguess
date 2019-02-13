@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 //action type
+import * as actionTYpes from './actionTypes.js';
 export const GOT_CAMPUSES = 'GOT_CAMPUSES';
 export const GOT_STUDENTS = 'GOT_STUDENTS';
 export const SELECTED_CAMPUS = 'SELECTED_CAMPUS';
@@ -12,6 +13,7 @@ export const DELETED_STUDENT = 'DELETED_STUDENT';
 export const REQUESTING_DATA = 'REQUESTING_DATA'
 export const UPDATED_STUDENT = 'UPDATED_STUDENT'
 export const UPDATED_CAMPUS = 'UPDATED_CAMPUS'
+
 //action creators
 export const gotCampuses = campuses => ({
   type: GOT_CAMPUSES,
@@ -78,7 +80,7 @@ export const updatedCampus = campus => {
     campus,
   };
 };
-//thunks
+
 export const fetchCampuses = () => {
   return async dispatch => {
     const { data } = await axios.get('/api/campuses');
