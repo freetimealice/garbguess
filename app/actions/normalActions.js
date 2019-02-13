@@ -1,4 +1,4 @@
-import * as aTypes from './types'
+import * as aTypes from './types';
 
 export const gotCampuses = campuses => ({
   type: aTypes.GOT_CAMPUSES,
@@ -57,7 +57,7 @@ export const updatedStudent = student => {
     type: aTypes.UPDATED_STUDENT,
     student,
   };
-}
+};
 
 export const updatedCampus = campus => {
   return {

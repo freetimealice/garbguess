@@ -14,7 +14,7 @@ class CampusForm extends React.Component {
 
   submitHandler(event) {
     event.preventDefault();
-
+    console.log('in submit handler')
     const name = event.target.name.value;
     const address = event.target.address.value;
     const {campusId} = this.props
@@ -23,20 +23,19 @@ class CampusForm extends React.Component {
       const errorArr = [];
       if (!nameField) errorArr.push('Name cannot be blank.');
       if (!addressField) errorArr.push('Address cannot be blank.');
-      console.log('error', errorArr)
       return errorArr;
     };
 
     const errors = validate(name, address);
-    
-    if (errors.length > 1) {
+
+    if (errors.length > 0) {
       this.setState({ errors });
     } else if (this.state.addOrUpdate !== 'update') {
       this.props.addCampus({ name, address });
     } else {
       this.props.updateCampus({ name, address }, campusId);
     }
-    
+
     event.target.reset()
   }
 
@@ -61,9 +60,9 @@ class CampusForm extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   addCampus: newCampus => {
-    dispatch(addCampus(newCampus));
+    dispatch(addCampus(newCampus))
   },
   updateCampus: (campus, campusId) => {
     dispatch(updateCampus(campus, campusId));

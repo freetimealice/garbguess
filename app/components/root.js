@@ -1,19 +1,21 @@
 import React from 'react';
-import Campuses from './campuses';
-import SingleCampus from './singleCampus'
-import Home from './home'
-import CampusForm from './campusForm'
-import Students from './students';
-import SingleStudent from './singleStudent'
-import NotFound from './notFound'
-import StudentForm from './studentForm'
+import Campuses from './Campuses';
+import SingleCampus from './SingleCampus'
+import Home from './Home'
+import CampusForm from './CampusForm'
+import Students from './Students';
+import SingleStudent from './SingleStudent'
+import NotFound from './NotFound'
+import StudentForm from './StudentForm'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 const Root = () => {
+
   return (
     <Router>
       <div>
       <h1>Juuban Municipal High School</h1>
+
         <nav>
           <ul id = "navLink">
           <li><Link to="/">Home</Link></li>

@@ -40,7 +40,7 @@ class Students extends React.Component {
                     </Link>
                   </td>
                   <td>
-                    <img src={`${student.imageUrl}`} />
+                    <img className = "small-img" src={`${student.imageUrl}`} />
                   </td>
                   <td>
                     <button

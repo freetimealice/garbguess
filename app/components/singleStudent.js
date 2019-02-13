@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchStudent, requestingData } from '../actions';
 import { Link } from 'react-router-dom';
-import StudentForm from './studentForm';
+import StudentForm from './StudentForm';
+import NotExist from './NotExist';
 
 class SingleStudent extends React.Component {
   componentDidMount() {
@@ -14,6 +15,10 @@ class SingleStudent extends React.Component {
   render() {
     const { selectedStudent, isFetching } = this.props;
     const { studentId } = this.props.match.params;
+
+    if (selectedStudent === null) {
+      return (<NotExist campusOrStudent = "Student" />)
+    }
 
     const {
       firstName,
@@ -45,7 +50,7 @@ class SingleStudent extends React.Component {
               <tr>
                 <td>Image</td>
                 <td>
-                  <img src={`${imageUrl}`} />
+                  <img className = "small-img" src={`${imageUrl}`} />
                 </td>
               </tr>
               <tr>

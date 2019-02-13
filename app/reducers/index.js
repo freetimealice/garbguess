@@ -39,7 +39,6 @@ const students = (state = [], action) => {
         .slice()
         .filter(currStudent => currStudent.id !== action.studentId);
     case aTypes.UPDATED_STUDENT:
-    console.log(state)
       return state.map(currStudent => {
         if (currStudent.id === action.student.id) {
           return action.student;

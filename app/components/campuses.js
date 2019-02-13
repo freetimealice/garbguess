@@ -24,7 +24,9 @@ class Campuses extends React.Component {
       <div>
         <main>
           <h1>Our Gorgeous Campuses</h1>
-          <table>
+
+          
+          {/* <table>
             <tbody>
               <tr>
                 <td>Name</td>
@@ -36,7 +38,7 @@ class Campuses extends React.Component {
                     <Link to={`/campuses/${campus.id}`}>{campus.name}</Link>
                   </td>
                   <td>
-                    <img src={`${campus.imageUrl}`} />
+                    <img className = "small-img" src={`${campus.imageUrl}`} />
                   </td>
                   <td>
                     <button
@@ -49,7 +51,7 @@ class Campuses extends React.Component {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table> */}
         </main>
       </div>
     );

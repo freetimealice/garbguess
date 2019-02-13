@@ -3,12 +3,12 @@ import React from 'react';
 const NotFound = () => {
 
   return (
-    <div>
-        <h1>Oh no!</h1>
-        <p>How did you end up here? This page does not exist! Please navigate elsewhere with the menu above!</p>
+    <div id = "map">
+        <h1>Oh no! The page doesn't exist. You're Lost!</h1>
+        <h3>Here's a campus map... although it may not be as helpful as the menu above!</h3>
+        <img src = "/images/campus-map.jpg" />
     </div>
   )
 }
-
 
 export default NotFound

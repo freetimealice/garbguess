@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchCampus, requestingData } from '../actions';
 import { Link } from 'react-router-dom';
-import CampusForm from './campusForm';
+import CampusForm from './CampusForm';
+import NotExist from './NotExist';
 
 class SingleCampus extends React.Component {
   componentDidMount() {
@@ -14,6 +15,9 @@ class SingleCampus extends React.Component {
   render() {
     const { selectedCampus, isFetching } = this.props;
     const { campusId } = this.props.match.params;
+    if (selectedCampus === null) {
+      return (<NotExist campusOrStudent = "Campus" />)
+    }
     const { name, imageUrl, address, description, students } = selectedCampus;
 
     if (!selectedCampus.length && isFetching) {
@@ -32,7 +36,7 @@ class SingleCampus extends React.Component {
               <tr>
                 <td>Image</td>
                 <td>
-                  <img src={`${imageUrl}`} />
+                  <img className="small-img" src={`${imageUrl}`} />
                 </td>
               </tr>
               <tr>

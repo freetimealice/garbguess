@@ -33,7 +33,7 @@ class StudentForm extends React.Component {
 
     const errors = validate(firstName, lastName, email);
 
-    if (errors.length > 1) {
+    if (errors.length > 0) {
       this.setState({ errors });
     } else if (this.state.addOrUpdate !== 'update') {
       this.props.addStudent({ firstName, lastName, email });
@@ -67,9 +67,9 @@ class StudentForm extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   addStudent: newStudent => {
-    dispatch(addStudent(newStudent));
+    dispatch(addStudent(newStudent, ownProps.history));
   },
   updateStudent: (student, studentId) => {
     dispatch(updateStudent(student, studentId))
