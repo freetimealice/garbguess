@@ -61,6 +61,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: auto;
 }
 
 button {
@@ -94,10 +95,6 @@ textarea {
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-}
-
-h1 {
-  height: 40px;
 }
 
 .error {
@@ -161,9 +158,8 @@ h1 {
 
 #home-div {
   background-image: url('/images/school.jpg');
-  height: calc(100vh - 160px);
+  height: calc(100vh - 120px);
   width: 100vw;
-  align-content: flex-end;
   display: flex;
   flex-direction: column;
   justify-content: center;

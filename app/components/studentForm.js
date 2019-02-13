@@ -27,7 +27,8 @@ class StudentForm extends React.Component {
       if (!firstNameField) errorArr.push('First name cannot be blank.');
       if (!lastNameField) errorArr.push('Last name cannot be blank.');
       if (!emailField) errorArr.push('Email cannot be blank.');
-      if (gpaField < 0 || gpa > 4) errorArr.push('GPA must be a number between 0.0 and 4.0');
+      if (gpaField < 0 || gpa > 4)
+        errorArr.push('GPA must be a number between 0.0 and 4.0');
       if (!emailField.includes('.') || !email.includes('@')) {
         errorArr.push(`Email should contain a "@" and "."`);
       }
@@ -41,7 +42,10 @@ class StudentForm extends React.Component {
     } else if (this.state.addOrUpdate !== 'update') {
       this.props.addStudent({ firstName, lastName, email, description, gpa });
     } else {
-      this.props.updateStudent({ firstName, lastName, email, description, gpa }, studentId);
+      this.props.updateStudent(
+        { firstName, lastName, email, description, gpa },
+        studentId
+      );
     }
     event.target.reset();
   }

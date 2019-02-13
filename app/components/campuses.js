@@ -23,18 +23,22 @@ class Campuses extends React.Component {
       <div>
         <main>
           <h1>Our Gorgeous Campuses</h1>
-          <div className = "card-container">
-          {campuses.map(campus => (
-            <div className="card" key={campus.id}>
-              <Link to={`/campuses/${campus.id}`}>
-                <img className="smallcampus-img" src={`${campus.imageUrl}`} />
-                <h3>{campus.name}</h3>
-              </Link>
-                <button id = "demolish" type="submit" onClick={() => this.clickHandler(event, campus.id)}>
+          <div className="card-container">
+            {campuses.map(campus => (
+              <div className="card" key={campus.id}>
+                <Link to={`/campuses/${campus.id}`}>
+                  <img className="smallcampus-img" src={`${campus.imageUrl}`} />
+                  <h3>{campus.name}</h3>
+                </Link>
+                <button
+                  id="demolish"
+                  type="submit"
+                  onClick={() => this.clickHandler(event, campus.id)}
+                >
                   Demolish
                 </button>
-            </div>
-          ))}
+              </div>
+            ))}
           </div>
         </main>
       </div>

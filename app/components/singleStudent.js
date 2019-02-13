@@ -27,7 +27,7 @@ class SingleStudent extends React.Component {
       email,
       gpa,
       campus,
-      description
+      description,
     } = selectedStudent;
 
     if (!selectedStudent.length && isFetching) {
@@ -37,24 +37,41 @@ class SingleStudent extends React.Component {
     return (
       <div>
         <main>
-          <h1>Student: {firstName} {lastName}</h1>
+          <h1>
+            Student: {firstName} {lastName}
+          </h1>
           <div className="profile-container">
             <div className="profile-details">
               <img className="largeprofile-img" src={`${imageUrl}`} />
             </div>
             <div className="profile-details">
-              <p><b>First Name: </b>{firstName}</p>
-              <p><b>Last Name: </b>{lastName}</p>
-              <p><b>Email:</b> {email}</p>
-              <p><b>GPA: </b>{gpa}</p>
-              <p><b>Campus: </b>
+              <p>
+                <b>First Name: </b>
+                {firstName}
+              </p>
+              <p>
+                <b>Last Name: </b>
+                {lastName}
+              </p>
+              <p>
+                <b>Email:</b> {email}
+              </p>
+              <p>
+                <b>GPA: </b>
+                {gpa}
+              </p>
+              <p>
+                <b>Campus: </b>
                 {campus ? (
                   <Link to={`/campuses/${campus.id}`}> {campus.name} </Link>
-                  ) : (
-                    'Not Currently Enrolled'
-                    )}
+                ) : (
+                  'Not Currently Enrolled'
+                )}
               </p>
-              <p><b>Description: </b>{description}</p>
+              <p>
+                <b>Description: </b>
+                {description}
+              </p>
             </div>
           </div>
           <div className="profile-details">

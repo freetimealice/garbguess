@@ -33,7 +33,7 @@ export const addCampus = (newCampus, history) => {
   return async dispatch => {
     const { data } = await axios.post('/api/campuses', newCampus);
     dispatch(action.addedCampus(data));
-    history.push(`/campuses/${data.id}`)
+    history.push(`/campuses/${data.id}`);
   };
 };
 

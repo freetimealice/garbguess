@@ -33,10 +33,7 @@ class CampusForm extends React.Component {
     } else if (this.state.addOrUpdate !== 'update') {
       this.props.addCampus({ name, address, description });
     } else {
-      this.props.updateCampus(
-        { name, address, description},
-        campusId
-      );
+      this.props.updateCampus({ name, address, description }, campusId);
     }
     event.target.reset();
   }
