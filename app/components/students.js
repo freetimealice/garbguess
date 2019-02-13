@@ -4,7 +4,7 @@ import {
   fetchStudents,
   deleteStudent,
   requestingData,
-} from '../action-creator';
+} from '../actions';
 import { Link } from 'react-router-dom';
 
 class Students extends React.Component {

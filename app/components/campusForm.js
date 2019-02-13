@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addCampus, updateCampus } from '../action-creator';
+import { addCampus, updateCampus } from '../actions';
 
 class CampusForm extends React.Component {
   constructor(props) {

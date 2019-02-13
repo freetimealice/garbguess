@@ -1,30 +1,18 @@
 import { combineReducers } from 'redux';
 
-import {
-  GOT_CAMPUSES,
-  GOT_STUDENTS,
-  SELECTED_STUDENT,
-  SELECTED_CAMPUS,
-  ADDED_CAMPUS,
-  ADDED_STUDENT,
-  DELETED_CAMPUS,
-  DELETED_STUDENT,
-  REQUESTING_DATA,
-  UPDATED_STUDENT,
-  UPDATED_CAMPUS,
-} from '../action-creator';
+import * as aTypes from '../actions';
 
 const campuses = (state = [], action) => {
   switch (action.type) {
-    case GOT_CAMPUSES:
+    case aTypes.GOT_CAMPUSES:
       return action.campuses;
-    case ADDED_CAMPUS:
+    case aTypes.ADDED_CAMPUS:
       return [...state, action.campus];
-    case DELETED_CAMPUS:
+    case aTypes.DELETED_CAMPUS:
       return state
         .slice()
         .filter(currCampus => currCampus.id !== action.campusId);
-    case UPDATED_CAMPUS: {
+    case aTypes.UPDATED_CAMPUS: {
       const newCampusArr = state.slice();
       const newState = newCampusArr.map(currCampus => {
         if (currCampus.id === action.campus.id) {
@@ -42,15 +30,16 @@ const campuses = (state = [], action) => {
 
 const students = (state = [], action) => {
   switch (action.type) {
-    case GOT_STUDENTS:
+    case aTypes.GOT_STUDENTS:
       return action.students;
-    case ADDED_STUDENT:
+    case aTypes.ADDED_STUDENT:
       return [...state, action.student];
-    case DELETED_STUDENT:
+    case aTypes.DELETED_STUDENT:
       return state
         .slice()
         .filter(currStudent => currStudent.id !== action.studentId);
-    case UPDATED_STUDENT:
+    case aTypes.UPDATED_STUDENT:
+    console.log(state)
       return state.map(currStudent => {
         if (currStudent.id === action.student.id) {
           return action.student;
@@ -65,9 +54,9 @@ const students = (state = [], action) => {
 
 const selectedStudent = (state = {}, action) => {
   switch (action.type) {
-    case SELECTED_STUDENT:
+    case aTypes.SELECTED_STUDENT:
       return action.student;
-    case UPDATED_STUDENT:
+    case aTypes.UPDATED_STUDENT:
       return action.student;
     default:
       return state;
@@ -76,9 +65,9 @@ const selectedStudent = (state = {}, action) => {
 
 const selectedCampus = (state = {}, action) => {
   switch (action.type) {
-    case SELECTED_CAMPUS:
+    case aTypes.SELECTED_CAMPUS:
       return action.campus;
-    case UPDATED_CAMPUS:
+    case aTypes.UPDATED_CAMPUS:
       return action.campus;
     default:
       return state;
@@ -87,15 +76,15 @@ const selectedCampus = (state = {}, action) => {
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
-    case REQUESTING_DATA:
+    case aTypes.REQUESTING_DATA:
       return true;
-    case GOT_CAMPUSES:
+    case aTypes.GOT_CAMPUSES:
       return false;
-    case GOT_STUDENTS:
+    case aTypes.GOT_STUDENTS:
       return false;
-    case SELECTED_CAMPUS:
+    case aTypes.SELECTED_CAMPUS:
       return false;
-    case SELECTED_STUDENT:
+    case aTypes.SELECTED_STUDENT:
       return false;
     default:
       return state;

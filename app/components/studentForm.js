@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addStudent, updateStudent } from '../action-creator';
+import { addStudent, updateStudent } from '../actions';
 
 class StudentForm extends React.Component {
   constructor(props) {
@@ -72,8 +72,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(addStudent(newStudent));
   },
   updateStudent: (student, studentId) => {
-    dispatch(updateStudent(student, studentId));
-  },
+    dispatch(updateStudent(student, studentId))
+  }
 });
 export default connect(
   null,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchStudent, requestingData, fetchStudents } from '../action-creator';
+import { fetchStudent, requestingData } from '../actions';
 import { Link } from 'react-router-dom';
 import StudentForm from './studentForm';
 
