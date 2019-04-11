@@ -1,7 +1,7 @@
 {
-  "name": "senior-enrichment",
+  "name": "garb-guess",
   "version": "0.0.1",
-  "description": "A review time project",
+  "description": "A project",
   "main": "main.js",
   "scripts": {
     "start:dev": "npm run build-watch & npm run start-server",
@@ -21,6 +21,7 @@
     "chalk": "^2.4.1",
     "express": "^4.14.0",
     "fs": "0.0.1-security",
+    "morgan": "^1.9.1",
     "pg": "^7.4.3",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",

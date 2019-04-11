@@ -2,8 +2,7 @@
 
 const router = require('express').Router();
 
-router.use('/campuses', require('./campuses'));
-router.use('/students', require('./students'));
+router.use('/clothes', require('./clothing'));
 
 router.use((req, res, next) => {
   const err = new Error('API route not found!');

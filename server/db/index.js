@@ -1,14 +1,15 @@
 'use strict';
 
 const db = require('./database');
-const Campuses = require('./models/campuses');
-const Students = require('./models/students');
+const Clothing = require('./models/clothing');
+const Outfit = require('./models/outfit');
 
-Students.belongsTo(Campuses, { as: 'campus' });
-Campuses.hasMany(Students, { foreignKey: 'campusId' });
+
+Clothing.belongsToMany(Outfit, {through: 'attire'})
+Outfit.belongsToMany(Clothing, {through: 'attire'})
 
 module.exports = {
   db,
-  Campuses,
-  Students,
+  Outfit,
+  Clothing
 };
